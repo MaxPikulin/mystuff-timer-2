@@ -13,9 +13,13 @@ let hours = 0,
     intId;
 
 function showTime() {
-    secondsSp.textContent = ('' + seconds).length < 2 ? '0' + seconds : seconds;
-    minutesSp.textContent = ('' + minutes).length < 2 ? '0' + minutes : minutes;
-    hoursSp.textContent = ('' + hours).length < 2 ? '0' + hours : hours;
+    let s = ('' + seconds).length < 2 ? '0' + seconds : seconds,
+        m = ('' + minutes).length < 2 ? '0' + minutes : minutes,
+        h = ('' + hours).length < 2 ? '0' + hours : hours;
+    secondsSp.textContent = s;
+    minutesSp.textContent = m;
+    hoursSp.textContent = h;
+    document.title = `${h}:${m}:${s}`;
 }
 
 function setTime() {
