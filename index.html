@@ -2,22 +2,26 @@
 <html>
 
 <head>
-    <title>Timer 2.0</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Timer 2.0</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
-    <div class="container">
-        <div class="timer">
-            <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
-        </div>
-        <div class="buttons">
-            <button id="startBtn">START</button>
-            <button id="resetBtn">RESET</button>
-            <button id="stopBtn">STOP</button>
-        </div>
+  <div class="container">
+    <div class="timer">
+      <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
     </div>
-    <script src="script.js"></script>
+    <div class="buttons">
+      <button class="adjust" data-amount="3600">++</button>
+      <button class="adjust" data-amount="-3600">--</button>
+      <button id="startBtn">START</button>
+      <button id="resetBtn">RESET</button>
+      <button id="stopBtn">STOP</button>
+      <button class="adjust" data-amount="60">+</button>
+      <button class="adjust" data-amount="-60">-</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
 </body>
 
 </html>

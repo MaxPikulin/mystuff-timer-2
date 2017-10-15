@@ -6,54 +6,74 @@ const minutesSp = document.querySelector('#minutes');
 const secondsSp = document.querySelector('#seconds');
 const strtCoords = startBtn.getBoundingClientRect();
 const contCoords = document.querySelector('.container').getBoundingClientRect();
+const adjustBtns = document.querySelectorAll('.adjust');
 
 let hours = 0,
-    minutes = 0,
-    seconds = 0,
-    intId;
+  minutes = 0,
+  seconds = 0,
+  intId;
 
 function showTime() {
-    let s = ('' + seconds).length < 2 ? '0' + seconds : seconds,
-        m = ('' + minutes).length < 2 ? '0' + minutes : minutes,
-        h = ('' + hours).length < 2 ? '0' + hours : hours;
-    secondsSp.textContent = s;
-    minutesSp.textContent = m;
-    hoursSp.textContent = h;
-    document.title = `${h}:${m}:${s}`;
+  const [sec, min, hour] = setTime();
+  let s = ('' + sec).length < 2 ? '0' + sec : sec,
+    m = ('' + min).length < 2 ? '0' + min : min,
+    h = ('' + hour).length < 2 ? '0' + hour : hour;
+  secondsSp.textContent = s;
+  minutesSp.textContent = m;
+  hoursSp.textContent = h;
+  document.title = `${h}:${m}:${s}`;
 }
 
 function setTime() {
-    seconds++;
-    if (seconds > 59) {
-        minutes++;
-        seconds = 0;
-    }
-    if (minutes > 59) {
-        hours++;
-        minutes = 0;
-    }
-    showTime();
+  let sec, min, hour = 0;
+  sec = parseInt(seconds % 60)
+  min = parseInt((seconds % 3600) / 60);
+  hour = parseInt(seconds / 3600);
+
+  // if (seconds > 59) {
+  //   minutes++;
+  //   seconds = 0;
+  // }
+  // if (minutes > 59) {
+  //   hours++;
+  //   minutes = 0;
+  // }
+  //showTime();
+
+  return [sec, min, hour];
 }
 
 function startTime() {
-    if (intId) return;
-    intId = setInterval(setTime, 1000);
+  if (intId) return;
+  intId = setInterval(handleTime, 1000);
 
-    stopBtn.setAttribute('style', `top:${strtCoords.top - contCoords.top}px; left: ${strtCoords.left-contCoords.left}px; width: ${strtCoords.width}px; display: block;`);
+  stopBtn.setAttribute('style', `top:${strtCoords.top - contCoords.top}px; left: ${strtCoords.left-contCoords.left}px; width: ${strtCoords.width}px; display: block;`);
 }
 
 function resetTime() {
-    seconds = minutes = hours = 0;
-    showTime();
+  seconds = minutes = hours = 0;
+  showTime();
 }
 
 function stopTime() {
-    if (!intId) return;
-    clearInterval(intId);
-    intId = null;
-    stopBtn.style.setProperty('display', 'none');
+  if (!intId) return;
+  clearInterval(intId);
+  intId = null;
+  stopBtn.style.setProperty('display', 'none');
+}
+
+function adjustTime(e) {
+  const adjustAmount = parseInt(e.target.dataset.amount);
+  seconds += adjustAmount;
+  showTime();
+}
+
+function handleTime() {
+  seconds++;
+  showTime();
 }
 
 startBtn.addEventListener('click', startTime);
 resetBtn.addEventListener('click', resetTime);
 stopBtn.addEventListener('click', stopTime);
+adjustBtns.forEach(v => v.addEventListener('click', adjustTime));
