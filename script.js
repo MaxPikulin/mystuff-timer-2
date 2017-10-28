@@ -36,6 +36,7 @@ function startTime() {
   if (intId) return;
   intId = setInterval(handleTime, 1000);
   stopBtn.setAttribute('style', `top:${strtCoords.top - contCoords.top}px; left: ${strtCoords.left-contCoords.left}px; width: ${strtCoords.width}px; display: block;`);
+  startBtn.style.setProperty('opacity', '0');
 }
 
 function resetTime() {
@@ -48,6 +49,7 @@ function stopTime() {
   clearInterval(intId);
   intId = null;
   stopBtn.style.setProperty('display', 'none');
+  startBtn.style.setProperty('opacity', '1');
 }
 
 function adjustTime(e) {
@@ -61,10 +63,15 @@ function handleTime() {
   showTime();
 }
 
-
+function clickGear() {
+  const ss = settings.style;
+  const gear = document.querySelector('.cls-1').style;
+  ss.display = ss.display == '' ? 'block' : '';
+  gear.fill = gear.fill == ''? 'red': '';
+}
 
 startBtn.addEventListener('click', startTime);
 resetBtn.addEventListener('click', resetTime);
 stopBtn.addEventListener('click', stopTime);
 adjustBtns.forEach(v => v.addEventListener('click', adjustTime));
-settingsBtn.addEventListener('click', ()=>settings.style.display == '' ? settings.style.display = 'block':settings.style.display = '');
+settingsBtn.addEventListener('click', clickGear);
