@@ -8,9 +8,7 @@ const strtCoords = startBtn.getBoundingClientRect();
 const contCoords = document.querySelector('.container').getBoundingClientRect();
 const adjustBtns = document.querySelectorAll('.adjust');
 
-let hours = 0,
-  minutes = 0,
-  seconds = 0,
+let seconds = 0,
   intId;
 
 function showTime() {
@@ -26,32 +24,20 @@ function showTime() {
 
 function setTime() {
   let sec, min, hour = 0;
-  sec = parseInt(seconds % 60)
+  sec = parseInt(seconds % 60);
   min = parseInt((seconds % 3600) / 60);
   hour = parseInt(seconds / 3600);
-
-  // if (seconds > 59) {
-  //   minutes++;
-  //   seconds = 0;
-  // }
-  // if (minutes > 59) {
-  //   hours++;
-  //   minutes = 0;
-  // }
-  //showTime();
-
   return [sec, min, hour];
 }
 
 function startTime() {
   if (intId) return;
   intId = setInterval(handleTime, 1000);
-
   stopBtn.setAttribute('style', `top:${strtCoords.top - contCoords.top}px; left: ${strtCoords.left-contCoords.left}px; width: ${strtCoords.width}px; display: block;`);
 }
 
 function resetTime() {
-  seconds = minutes = hours = 0;
+  seconds = 0;
   showTime();
 }
 

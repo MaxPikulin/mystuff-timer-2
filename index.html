@@ -12,13 +12,17 @@
       <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
     </div>
     <div class="buttons">
-      <button class="adjust" data-amount="3600">++</button>
-      <button class="adjust" data-amount="-3600">--</button>
       <button id="startBtn">START</button>
       <button id="resetBtn">RESET</button>
       <button id="stopBtn">STOP</button>
-      <button class="adjust" data-amount="60">+</button>
-      <button class="adjust" data-amount="-60">-</button>
+      <div>
+        <button class="adjust" data-amount="3600">+1h</button>
+        <button class="adjust" data-amount="-3600">-1h</button>
+        <button class="adjust" data-amount="600">+10m</button>
+        <button class="adjust" data-amount="-600">-10m</button>
+        <button class="adjust" data-amount="60">+1m</button>
+        <button class="adjust" data-amount="-60">-1m</button>
+      </div>
     </div>
   </div>
   <script src="script.js"></script>
