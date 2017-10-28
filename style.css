@@ -11,8 +11,8 @@ html {
   width: 300px;
   height: 120px;
   border-radius: 5px;
-  box-shadow: 3px 3px 5px rgba(220, 20, 20, .8), -3px -3px 5px rgba(100, 200, 100, .8);
   user-select: none;
+  border: 3px solid rgb(96, 215, 110);
 }
 
 .timer {
@@ -48,14 +48,13 @@ button:focus {
   outline: 0;
 }
 
-#stopBtn {
-  display: none;
-  position: absolute;
+#startBtn {
+  width: 70px;
 }
 
 .adjust {
   font-size: 0.7em;
-  margin-top: 15px;
+  margin-top: 10px;
   width: 40px;
 }
 
@@ -63,6 +62,7 @@ button:focus {
   width: 30px;
   position: absolute;
   right: 10px;
+  fill: rgb(96, 215, 110);
 }
 
 .gear:hover .cls-1 {
@@ -70,7 +70,7 @@ button:focus {
 }
 
 .settings {
-  border: 1px solid red;
+  border: 1px solid rgb(96, 215, 110);
   border-radius: 5px;
   background-color: white;
   position: absolute;

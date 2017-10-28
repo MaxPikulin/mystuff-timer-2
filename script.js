@@ -1,11 +1,8 @@
 const startBtn = document.querySelector('#startBtn');
 const resetBtn = document.querySelector('#resetBtn');
-const stopBtn = document.querySelector('#stopBtn');
 const hoursSp = document.querySelector('#hours');
 const minutesSp = document.querySelector('#minutes');
 const secondsSp = document.querySelector('#seconds');
-const strtCoords = startBtn.getBoundingClientRect();
-const contCoords = document.querySelector('.container').getBoundingClientRect();
 const adjustBtns = document.querySelectorAll('.adjust');
 const settingsBtn = document.getElementsByClassName('gear')[0];
 const settings = document.getElementsByClassName('settings')[0];
@@ -32,24 +29,22 @@ function setTime() {
   return [sec, min, hour];
 }
 
-function startTime() {
-  if (intId) return;
-  intId = setInterval(handleTime, 1000);
-  stopBtn.setAttribute('style', `top:${strtCoords.top - contCoords.top}px; left: ${strtCoords.left-contCoords.left}px; width: ${strtCoords.width}px; display: block;`);
-  startBtn.style.setProperty('opacity', '0');
+function startStopTime() {
+  if (startBtn.textContent == 'START') {
+    if (intId) return;
+    intId = setInterval(handleTime, 1000);
+    startBtn.textContent = 'STOP';
+  } else {
+    if (!intId) return;
+    clearInterval(intId);
+    intId = null;
+    startBtn.textContent = 'START';
+  }
 }
 
 function resetTime() {
   seconds = 0;
   showTime();
-}
-
-function stopTime() {
-  if (!intId) return;
-  clearInterval(intId);
-  intId = null;
-  stopBtn.style.setProperty('display', 'none');
-  startBtn.style.setProperty('opacity', '1');
 }
 
 function adjustTime(e) {
@@ -70,8 +65,7 @@ function clickGear() {
   gear.fill = gear.fill == ''? 'red': '';
 }
 
-startBtn.addEventListener('click', startTime);
+startBtn.addEventListener('click', startStopTime);
 resetBtn.addEventListener('click', resetTime);
-stopBtn.addEventListener('click', stopTime);
 adjustBtns.forEach(v => v.addEventListener('click', adjustTime));
 settingsBtn.addEventListener('click', clickGear);
