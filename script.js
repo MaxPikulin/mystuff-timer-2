@@ -7,6 +7,8 @@ const secondsSp = document.querySelector('#seconds');
 const strtCoords = startBtn.getBoundingClientRect();
 const contCoords = document.querySelector('.container').getBoundingClientRect();
 const adjustBtns = document.querySelectorAll('.adjust');
+const settingsBtn = document.getElementsByClassName('gear')[0];
+const settings = document.getElementsByClassName('settings')[0];
 
 let seconds = 0,
   intId;
@@ -59,7 +61,10 @@ function handleTime() {
   showTime();
 }
 
+
+
 startBtn.addEventListener('click', startTime);
 resetBtn.addEventListener('click', resetTime);
 stopBtn.addEventListener('click', stopTime);
 adjustBtns.forEach(v => v.addEventListener('click', adjustTime));
+settingsBtn.addEventListener('click', ()=>settings.style.display == '' ? settings.style.display = 'block':settings.style.display = '');
