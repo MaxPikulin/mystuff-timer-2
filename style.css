@@ -28,7 +28,7 @@ html {
   text-align: center;
 }
 
-.buttons button, .buttons.adjust {
+.button {
   font-size: 1.1em;
   background-color: #7FFF8E;
   border: none;
@@ -37,7 +37,7 @@ html {
   margin-right: 5px;
 }
 
-.buttons button:active {
+.button:active {
   transform: translateY(2px);
   background-color: #7FE88E;
   box-shadow: 2px 1px 1px #555;
@@ -52,7 +52,7 @@ button:focus {
   position: absolute;
 }
 
-.buttons.adjust {
+.adjust {
   font-size: 0.7em;
   margin-top: 15px;
   width: 40px;
